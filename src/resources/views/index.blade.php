@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="utf-8">
-        <title>山の天気予報</title>
-        <link rel="stylesheet" href="{{ url('css/style.css') }}">
-    </head>
-    <body>
-        <div class="container">
+<x-layout>
+    <x-slot name="title">
+        山の天気予報
+    </x-slot>
 
-        </div>
-    </body>
-</html>
+    <h1>山の天気予報</h1>
+    <ul>
+        @foreach($mountains as $mountain)
+            <li><a href="{{ route('mountains.show', $mountain) }}">{{ $mountain->name }}</a></li>
+        @endforeach
+    </ul>
+</x-layout>
