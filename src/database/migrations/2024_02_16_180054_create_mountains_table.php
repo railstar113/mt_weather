@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('mountains', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('kana');
             $table->string('prefecture');
             $table->string('address');
             $table->double('latitude', 17, 14);
