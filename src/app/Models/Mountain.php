@@ -12,6 +12,7 @@ class Mountain extends Model
 
     protected $fillable = [
         'name',
+        'kana',
         'prefecture',
         'address',
         'latitude',
