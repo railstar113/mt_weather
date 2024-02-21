@@ -15,11 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('kana');
-            $table->string('prefecture');
-            $table->string('address');
+            $table->string('prefecture_code');
+            $table->string('address')->nullable();
             $table->double('latitude', 17, 14);
             $table->double('longitude', 17, 14);
             $table->timestamps();
+            $table
+                ->foreign('prefecture_code')
+                ->references('code')
+                ->on('prefectures');
         });
     }
 

@@ -13,9 +13,15 @@ class Mountain extends Model
     protected $fillable = [
         'name',
         'kana',
-        'prefecture',
+        'prefecture_code',
         'address',
         'latitude',
         'longitude',
     ];
+
+    // $mountain->prefecture
+    public function post()
+    {
+        return $this->belongsTo(Prefecture::class);
+    }
 }
