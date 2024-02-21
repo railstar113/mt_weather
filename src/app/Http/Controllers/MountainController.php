@@ -8,13 +8,7 @@ use Illuminate\Support\Facades\Http;
 
 class MountainController extends Controller
 {
-    public function index()
-    {
-        $mountains = Mountain::all();
-        return view('index', compact('mountains'));
-    }
-
-    public function show(Mountain $mountain)
+    public function weather(Mountain $mountain)
     {
         // $mountain = Mountain::findOrFail($id);
 
@@ -24,6 +18,6 @@ class MountainController extends Controller
         $response = Http::get("https://api.openweathermap.org/data/2.5/onecall?lat=$latitude&lon=$longitude&exclude=minutely&appid=$apiKey&units=metric");
         $weatherData = $response->json();
 
-        return view('mountains.show', compact('mountain', 'weatherData'));
+        return view('mountains.weather', compact('mountain', 'weatherData'));
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PrefectureController;
 use App\Http\Controllers\MountainController;
 
 /*
@@ -14,9 +15,13 @@ use App\Http\Controllers\MountainController;
 |
 */
 
-Route::get('/', [MountainController::class, 'index'])
-    ->name('mountains.index');
+Route::get('/', [PrefectureController::class, 'index'])
+    ->name('prefectures.index');
 
-Route::get('/mountain/{mountain}', [MountainController::class, 'show'])
-    ->name('mountains.show')
+Route::get('/prefecture/{code}', [PrefectureController::class, 'show'])
+    ->name('prefectures.show')
+    ->where('prefecture', '[0-9]+');
+
+Route::get('/mountain/{mountain}', [MountainController::class, 'weather'])
+    ->name('mountains.weather')
     ->where('mountain', '[0-9]+');
