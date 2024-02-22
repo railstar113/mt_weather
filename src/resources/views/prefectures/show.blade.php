@@ -4,11 +4,22 @@
     </x-slot>
 
     <h1>{{ $prefecture }}の山一覧</h1>
-    <ul>
-        @forelse ($mountains as $mountain)
-            <li><a href="{{ route('mountains.weather', $mountain) }}">{{ $mountain->name }}</a></li>
-        @empty
-            <li>山の登録がありません。</li>
-        @endforelse
-    </ul>
+    @if ($mountainsExist)
+        <dl>
+            @foreach ($kanaColumns as $kanaColumn => $mountains)
+                @if ($mountains->isNotEmpty())
+                    <dt>{{ $kanaColumn }}</dt>
+                    <dd>
+                        <ul>
+                            @foreach ($mountains as $mountain)
+                                <li><a href="{{ route('mountains.weather', $mountain->id) }}">{{ $mountain->name }}</a></li>
+                            @endforeach
+                        </ul>
+                    </dd>
+                @endif
+            @endforeach
+        </dl>
+    @else
+        <p>山の登録がありません。</p>
+    @endif
 </x-layout>
