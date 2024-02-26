@@ -18,6 +18,6 @@ class Prefecture extends Model
     // $prefecture->mountains
     public function mountains()
     {
-        return $this->hasMany(Mountain::class);
+        return $this->hasMany(Mountain::class, 'prefecture_code', 'code');
     }
 }

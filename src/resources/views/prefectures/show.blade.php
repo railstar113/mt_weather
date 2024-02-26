@@ -1,9 +1,10 @@
 <x-layout>
     <x-slot name="title">
-        {{ $prefecture }} - 山一覧
+        {{ $prefecture->name }} - 山一覧
     </x-slot>
 
-    <h1>{{ $prefecture }}の山一覧</h1>
+    <h1>{{ $prefecture->name }}の山一覧</h1>
+    <p>&laquo; <a href="{{ route('prefectures.index') }}">都道府県一覧</a></a></p>
     @if ($mountainsExist)
         <dl>
             @foreach ($kanaColumns as $kanaColumn => $mountains)

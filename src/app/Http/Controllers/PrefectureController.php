@@ -23,7 +23,7 @@ class PrefectureController extends Controller
 
     public function show($code)
     {
-        $prefecture = Prefecture::findOrFail($code)->name;
+        $prefecture = Prefecture::findOrFail($code);
         $mountainsExist = Mountain::where('prefecture_code', $code)->exists();
         $kanaColumnsList = [
             'あ行' => '^([ぁ-おァ-オヴｧ-ｫｱ-ｵ])',

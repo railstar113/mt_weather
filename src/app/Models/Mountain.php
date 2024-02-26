@@ -20,8 +20,8 @@ class Mountain extends Model
     ];
 
     // $mountain->prefecture
-    public function post()
+    public function prefecture()
     {
-        return $this->belongsTo(Prefecture::class);
+        return $this->belongsTo(Prefecture::class, 'prefecture_code', 'code');
     }
 }

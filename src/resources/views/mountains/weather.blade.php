@@ -4,6 +4,7 @@
     </x-slot>
 
     <h1>{{ $mountain->name }} - {{ $weatherData['city']['name'] }}付近の天気予報</h1>
+    <p>&laquo; <a href="{{ route('prefectures.show', $mountain->prefecture) }}">{{ $mountain->prefecture->name }}の山一覧</a></a></p>
     <ul>
         @foreach ($weatherData['list'] as $i => $weather_3hours)
             <li>{{ date('Y/m/d H:i', $weather_3hours['dt']) }}</li>
