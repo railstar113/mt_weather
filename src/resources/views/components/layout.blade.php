@@ -10,8 +10,8 @@
         <link rel="stylesheet" href="{{ url('css/style.css') }}">
     </head>
     <body>
-        <div class="container">
+        <main>
             {{ $slot }}
-        </div>
+        </main>
     </body>
 </html>

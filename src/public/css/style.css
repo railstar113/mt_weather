@@ -106,20 +106,24 @@
   font-size: 3rem;
 }
 
-.text_center {
-  text-align: center;
+@media (min-width: 768px) {
+  .sp_only {
+    display: none;
+  }
 }
 
-.text_left {
-  text-align: right;
+@media (max-width: 767px) {
+  .pc_only {
+    display: none;
+  }
 }
 
-.text_right {
-  text-align: right;
+.i_block {
+  display: inline-block;
 }
 
-.text_red {
-  color: #f00;
+.block {
+  display: block;
 }
 
 .flex {
@@ -138,8 +142,40 @@
   gap: 20px;
 }
 
+.text_center {
+  text-align: center;
+}
+
+.text_left {
+  text-align: right;
+}
+
+.text_right {
+  text-align: right;
+}
+
+.text_red {
+  color: #f00;
+}
+
+.border {
+  border: 1px solid #666;
+  padding: 4% 3%;
+}
+
+.list_unstyled {
+  list-style: none;
+  padding: 0;
+}
+
 /* common
 ------------------------------------------ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
   font-size: 62.5%;
   overflow-x: hidden;
@@ -149,9 +185,17 @@ body {
   font-family: "Helvetica Neue", "Arial", YuGothic, "Yu Gothic", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", "メイリオ", Meiryo, sans-serif;
   font-weight: 500;
   color: #666;
-  font-size: 20px;
-  font-size: 2rem;
+  font-size: 18px;
+  font-size: 1.8rem;
   min-height: 0;
+  font-feature-settings: "palt";
+  letter-spacing: 0.05em;
+}
+@media (max-width: 767px) {
+  body {
+    font-size: 14px;
+    font-size: 1.4rem;
+  }
 }
 body::before {
   content: "";
@@ -166,15 +210,16 @@ body::before {
 }
 
 main {
-  padding: 50px 0;
+  padding: calc(2% + 30px) 0;
 }
 
 section:not(:first-of-type) {
-  margin-top: 50px;
+  margin-top: calc(2% + 30px);
 }
 
-h1, h2 {
-  font-weight: 500;
+h1,
+h2 {
+  font-weight: 600;
   line-height: 1.2;
 }
 
@@ -183,42 +228,86 @@ h1 {
   font-size: 36px;
   font-size: 3.6rem;
   letter-spacing: 0.05em;
+  line-height: 1.4;
   width: 800px;
   max-width: calc(100% - 20px);
-  margin: 0 auto 0.8em;
+  margin: 0 auto 1.2em;
+}
+@media (max-width: 767px) {
+  h1 {
+    font-size: 22px;
+    font-size: 2.2rem;
+  }
 }
 
 h2 {
-  font-size: 30px;
-  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.4;
   margin-bottom: 0.8em;
+  font-size: 18px;
+  font-size: 1.8rem;
+}
+@media (max-width: 767px) {
+  h2 {
+    font-size: 16px;
+    font-size: 1.6rem;
+  }
 }
 
 p {
   line-height: 1.8;
-  margin: 1.3em 0 1em;
+  margin: 0.5em auto;
+}
+p span.text_small {
+  font-size: 14px;
+  font-size: 1.4rem;
+}
+@media (max-width: 767px) {
+  p span.text_small {
+    font-size: 12px;
+    font-size: 1.2rem;
+  }
 }
 p.more {
-  margin: 50px 0;
+  margin: calc(2% + 30px) 0;
+}
+p.back_link {
+  margin-bottom: 1.5em;
+}
+@media (max-width: 767px) {
+  p.back_link {
+    width: 500px;
+    max-width: 100%;
+  }
 }
 p:last-child {
   margin-bottom: 0;
 }
 
-dl, ul, ol {
+dl,
+ul,
+ol {
   line-height: 1.6;
+}
+
+dl dt {
+  font-weight: bold;
 }
 
 a {
   color: #666;
-  text-underline-offset: 0.2em;
+  text-decoration: none;
   transition: 0.2s;
 }
 a:hover {
-  color: #888;
+  color: #aaa;
 }
 
-input, button, textarea, select {
+input,
+button,
+textarea,
+select {
   color: #333;
 }
 
@@ -234,6 +323,10 @@ input[type=password] {
 
 label {
   cursor: pointer;
+}
+
+img {
+  margin: 0 auto;
 }
 
 .button {
@@ -270,5 +363,139 @@ label {
   margin: 0 auto;
 }
 .container:not(:first-of-type) {
-  margin-top: 50px;
+  margin-top: calc(2% + 30px);
+}
+
+.row.border {
+  border: 1px solid #666;
+}
+.row:not(:last-child) {
+  margin-bottom: calc(2% + 30px);
+}
+
+/* index.blade.php
+------------------------------------------ */
+.regions_wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 2%;
+}
+.regions_wrap dl {
+  text-align: center;
+  width: 23.5%;
+}
+.regions_wrap dl dt {
+  -webkit-text-decoration: underline solid #666;
+          text-decoration: underline solid #666;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.4em;
+}
+.regions_wrap dl dd ul li:not(:last-child) {
+  margin-bottom: 0.5em;
+}
+@media (max-width: 767px) {
+  .regions_wrap {
+    width: 500px;
+    max-width: 100%;
+    margin: 0 auto;
+    gap: 20px 3%;
+  }
+  .regions_wrap dl {
+    width: 31.3333333333%;
+  }
+}
+
+/* show.blade.php
+------------------------------------------ */
+.kana_columns_wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 2%;
+}
+.kana_columns_wrap dl {
+  text-align: center;
+  width: 23.5%;
+}
+.kana_columns_wrap dl dt {
+  -webkit-text-decoration: underline solid #666;
+          text-decoration: underline solid #666;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.4em;
+}
+.kana_columns_wrap dl dd ul li:not(:last-child) {
+  margin-bottom: 0.5em;
+}
+@media (max-width: 767px) {
+  .kana_columns_wrap {
+    width: 500px;
+    max-width: 100%;
+    margin: 0 auto;
+    gap: 20px 3%;
+  }
+  .kana_columns_wrap dl {
+    width: 31.3333333333%;
+  }
+}
+
+/* weather.blade.php
+------------------------------------------ */
+.table_weather {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #666;
+}
+.table_weather th, .table_weather td {
+  vertical-align: middle;
+  line-height: 1.4;
+  font-size: 14px;
+  font-size: 1.4rem;
+}
+.table_weather th .text_small, .table_weather td .text_small {
+  font-size: 12px;
+  font-size: 1.2rem;
+}
+.table_weather thead th {
+  background: #a7dbb3;
+  border-bottom: none;
+  margin-bottom: 0;
+  border-bottom: 1px solid #666;
+  padding: 10px 5px;
+  font-size: 16px;
+  font-size: 1.6rem;
+}
+.table_weather thead th .text_small {
+  font-size: 14px;
+  font-size: 1.4rem;
+}
+.table_weather tbody th, .table_weather tbody td {
+  padding: 7px 5px;
+}
+.table_weather.now th, .table_weather.now td {
+  font-size: 16px;
+  font-size: 1.6rem;
+}
+.table_weather.now th .text_small, .table_weather.now td .text_small {
+  font-size: 14px;
+  font-size: 1.4rem;
+}
+.table_weather.now tbody th, .table_weather.now tbody td {
+  padding: 0 5px 10px;
+}
+@media (min-width: 768px) {
+  .table_weather:not(.now) tbody th:not(:last-child), .table_weather:not(.now) tbody td:not(:last-child) {
+    border-right: 1px solid #666;
+  }
+}
+@media (min-width: 768px) {
+  .table_weather:not(.now) tbody tr:first-child th, .table_weather:not(.now) tbody tr td {
+    padding-top: 10px;
+  }
+  .table_weather:not(.now) tbody tr:last-child th, .table_weather:not(.now) tbody tr td {
+    padding-bottom: 10px;
+  }
+}
+@media (max-width: 767px) {
+  .table_weather:not(.now) tbody tr:not(:last-child) th, .table_weather:not(.now) tbody tr:not(:last-child) td {
+    border-bottom: 1px solid #666;
+  }
 }/*# sourceMappingURL=style.css.map */
