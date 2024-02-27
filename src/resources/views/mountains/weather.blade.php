@@ -32,7 +32,7 @@
               @if (isset($weatherNow['rain']))
                 {{ $weatherNow['rain']['3h'] }}<span class="text_small">mm</span>
               @elseif (isset($weatherNow['snow']))
-                {{ $weatherNow['snow']['3h'] }}<span class="text_small">mm</span>
+                {{ $weatherNow['snow']['3h'] }}<span class="text_small">cm<br>（降雪量）</span>
               @else
                 0.0<span class="text_small">mm</span>
               @endif
@@ -97,7 +97,7 @@
                   @if (isset($weather3h['rain']))
                     {{ $weather3h['rain']['3h'] }}<span class="text_small">mm</span>
                   @elseif (isset($weather3h['snow']))
-                    {{ $weather3h['snow']['3h'] }}<span class="text_small">mm</span>
+                    {{ $weather3h['snow']['3h'] }}<span class="text_small">cm<br>（降雪量）</span>
                   @else
                     0.0<span class="text_small">mm</span>
                   @endif
@@ -113,6 +113,47 @@
               @endforeach
               {!! $i === array_key_last($weather3hData) ? $emptyTags['last'] : '' !!}
             </tr>
+          </tbody>
+        </table>
+      </div>
+    @endforeach
+
+    {{-- 3時間毎の天気/SP --}}
+    @foreach ($weather3hData as $i => $weather3hs)
+      <div class="row text_center sp_only">
+        <table class="table_weather">
+          <thead>
+            <tr>
+              <th colspan="6">{{ $i === 0 ? '今日 ' : '' }}{{ $i === 1 ? '明日 ' : '' }}{{ date('m/d', $weather3hs[$i]['dt']) . '(' . $weather3hs[$i]['dt_day'] . ')' }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>時刻</th>
+              <th></th>
+              <th>天気</th>
+              <th>気温</th>
+              <th>降水量</th>
+              <th>風速</th>
+            </tr>
+            @foreach ($weather3hs as $weather3h)
+              <tr>
+                  <td>{{ date('H:i', $weather3h['dt']) }}</td>
+                  <td><img src="http://openweathermap.org/img/wn/{{ $weather3h['weather'][0]['icon'] }}@2x.png" alt="{{ $weather3h['weather'][0]['description'] }}"></td>
+                  <td>{{ $weather3h['weather'][0]['description'] }}</td>
+                  <td>{{ round($weather3h['main']['temp']) }}℃</td>
+                  <td>
+                    @if (isset($weather3h['rain']))
+                      {{ $weather3h['rain']['3h'] }}<span class="text_small">mm</span>
+                    @elseif (isset($weather3h['snow']))
+                      {{ $weather3h['snow']['3h'] }}<span class="text_small">cm<br>（降雪量）</span>
+                    @else
+                      0.0<span class="text_small">mm</span>
+                    @endif
+                  </td>
+                  <td><span class="text_small">{{ $weather3h['wind']['direction'] }}</span><br>{{ round($weather3h['wind']['speed'], 1) }}<span class="text_small">m/s</span></td>
+                </tr>
+              @endforeach
           </tbody>
         </table>
       </div>

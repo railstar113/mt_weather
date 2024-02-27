@@ -92,9 +92,11 @@
       margin-bottom: 0;
       border-bottom: 1px solid $color_text;
       padding: 10px 5px;
-      @include fontsize(16);
-      .text_small {
-        @include fontsize(14);
+      @media(min-width: 375px) {
+        @include fontsize(16);
+        .text_small {
+          @include fontsize(14);
+        }
       }
     }
   }
@@ -105,15 +107,15 @@
   }
 
   &.now {
-    th, td {
-      @include fontsize(16);
-      .text_small {
-        @include fontsize(14);
-      }
-    }
     tbody {
       th, td {
         padding: 0 5px 10px;
+        @media(min-width: ($bp + 1px)) {
+          @include fontsize(16);
+          .text_small {
+            @include fontsize(14);
+          }
+        }
       }
     }
   }
@@ -121,6 +123,24 @@
   &:not(.now) {
     tbody {
       th, td {
+        @media(max-width: $bp) {
+          width: 20%;
+          &:first-child {
+            width: 19%;
+          }
+          &:nth-child(2) {
+            width: 18%;
+          }
+          &:nth-child(3) {
+            width: 23%;
+          }
+        }
+        @media(max-width: 374px) {
+          @include fontsize(12);
+          .text_small {
+            @include fontsize(10);
+          }
+        }
         &:not(:last-child) {
           @media(min-width: ($bp + 1px)) {
             border-right: 1px solid $color_text;
