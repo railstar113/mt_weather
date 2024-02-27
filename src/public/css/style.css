@@ -444,6 +444,13 @@ img {
   border-collapse: collapse;
   border: 1px solid #666;
 }
+@media (max-width: 767px) {
+  .table_weather {
+    width: 500px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}
 .table_weather th, .table_weather td {
   vertical-align: middle;
   line-height: 1.4;
@@ -487,10 +494,23 @@ img {
   }
 }
 @media (min-width: 768px) {
-  .table_weather:not(.now) tbody tr:first-child th, .table_weather:not(.now) tbody tr td {
+  .table_weather:not(.now) tbody th {
+    width: 12%;
+  }
+}
+@media (min-width: 768px) {
+  .table_weather:not(.now) tbody td {
+    width: 11%;
+  }
+  .table_weather:not(.now) tbody td.empty {
+    background: rgba(170, 170, 170, 0.2);
+  }
+}
+@media (min-width: 768px) {
+  .table_weather:not(.now) tbody tr:first-child th, .table_weather:not(.now) tbody tr:first-child td {
     padding-top: 10px;
   }
-  .table_weather:not(.now) tbody tr:last-child th, .table_weather:not(.now) tbody tr td {
+  .table_weather:not(.now) tbody tr:last-child th, .table_weather:not(.now) tbody tr:last-child td {
     padding-bottom: 10px;
   }
 }

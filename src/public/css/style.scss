@@ -10,30 +10,25 @@
   display: flex;
   flex-wrap: wrap;
   gap: 40px 2%;
-
   dl {
     text-align: center;
     width: calc(94% / 4);
-
     dt {
       text-decoration: underline solid $color_text;
       text-decoration-thickness: 1px;
       text-underline-offset: .4em;
     }
-
     dd {
       ul li:not(:last-child) {
         margin-bottom: .5em;
       }
     }
   }
-
   @media(max-width: $bp) {
     width: 500px;
     max-width: 100%;
     margin: 0 auto;
     gap: 20px 3%;
-
     dl {
       width: calc(94% / 3);
     }
@@ -46,30 +41,25 @@
   display: flex;
   flex-wrap: wrap;
   gap: 40px 2%;
-
   dl {
     text-align: center;
     width: calc(94% / 4);
-
     dt {
       text-decoration: underline solid $color_text;
       text-decoration-thickness: 1px;
       text-underline-offset: .4em;
     }
-
     dd {
       ul li:not(:last-child) {
         margin-bottom: .5em;
       }
     }
   }
-
   @media(max-width: $bp) {
     width: 500px;
     max-width: 100%;
     margin: 0 auto;
     gap: 20px 3%;
-
     dl {
       width: calc(94% / 3);
     }
@@ -82,6 +72,11 @@
   width: 100%;
   border-collapse: collapse;
   border: 1px solid $color_text;
+  @media(max-width: $bp) {
+    width: 500px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
   th, td {
     vertical-align: middle;
     line-height: 1.4;
@@ -132,13 +127,30 @@
           }
         }
       }
+      th {
+        @media(min-width: ($bp + 1px)) {
+          width: 12%;
+        }
+      }
+      td {
+        @media(min-width: ($bp + 1px)) {
+          width: 11%;
+          &.empty {
+            background: rgba(#aaa, .2);
+          }
+        }
+      }
       tr {
         @media(min-width: ($bp + 1px)) {
-          &:first-child th, td {
-            padding-top: 10px;
+          &:first-child {
+            th, td {
+              padding-top: 10px;
+            }
           }
-          &:last-child th, td {
-            padding-bottom: 10px;
+          &:last-child {
+            th, td {
+              padding-bottom: 10px;
+            }
           }
         }
         @media(max-width: $bp) {
