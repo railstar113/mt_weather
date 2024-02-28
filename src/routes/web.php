@@ -16,12 +16,12 @@ use App\Http\Controllers\MountainController;
 */
 
 Route::get('/', [PrefectureController::class, 'index'])
-    ->name('prefectures.index');
+  ->name('prefectures.index');
 
-Route::get('/prefecture/{code}', [PrefectureController::class, 'show'])
-    ->name('prefectures.show')
-    ->where('prefecture', '[0-9]+');
+Route::get('/prefecture/{prefecture}', [PrefectureController::class, 'show'])
+  ->name('prefectures.show')
+  ->where('prefecture', '[0-9]+');
 
-Route::get('/mountain/{mountain}', [MountainController::class, 'weather'])
-    ->name('mountains.weather')
-    ->where('mountain', '[0-9]+');
+Route::get('/prefecture/{prefectureId}/mountain/{mountainId}', [MountainController::class, 'weather'])
+  ->name('mountains.weather')
+  ->where(['prefectureId' => '[0-9]+', 'mountainId' => '[0-9]+']);

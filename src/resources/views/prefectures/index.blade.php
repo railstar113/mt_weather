@@ -13,7 +13,7 @@
             <ul class="list_unstyled">
               @foreach ($prefectures as $prefecture)
                 <li>
-                  <a href="{{ route('prefectures.show', $prefecture->code) }}">{{ $prefecture->name }}</a>
+                  <a href="{{ route('prefectures.show', $prefecture->id) }}">{{ $prefecture->name }}</a>
                 </li>
               @endforeach
             </ul>

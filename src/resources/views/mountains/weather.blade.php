@@ -1,12 +1,12 @@
 <x-layout>
   <x-slot name="title">
-    {{ $mountain->name }} - 天気予報
+    {{ $mountain['name'] }} - 天気予報
   </x-slot>
 
-  <h1>{{ $mountain->name }} - {{ $weatherCityData['name'] }}付近の<span class="i_block">天気予報</span></h1>
+  <h1>{{ $mountain['name'] }} - {{ $mountain['area'] }}の<span class="i_block">天気予報</span></h1>
   <div class="container">
     <p class="back_link">&laquo; <a
-        href="{{ route('prefectures.show', $mountain->prefecture) }}">{{ $mountain->prefecture->name }}の山一覧</a></a></p>
+        href="{{ route('prefectures.show', $prefecture->id) }}">{{ $prefecture->name }}の山一覧</a></a></p>
 
     {{-- 現在の天気 --}}
     <div class="row text_center">

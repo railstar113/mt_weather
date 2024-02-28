@@ -11,7 +11,6 @@
   flex-wrap: wrap;
   gap: 40px 2%;
   dl {
-    text-align: center;
     width: calc(94% / 4);
     dt {
       text-decoration: underline solid $color_text;
@@ -42,7 +41,6 @@
   flex-wrap: wrap;
   gap: 40px 2%;
   dl {
-    text-align: center;
     width: calc(94% / 4);
     dt {
       text-decoration: underline solid $color_text;
@@ -62,6 +60,11 @@
     gap: 20px 3%;
     dl {
       width: calc(94% / 3);
+    }
+  }
+  @media(max-width: 480px) {
+    dl {
+      width: calc(97% / 2);
     }
   }
 }

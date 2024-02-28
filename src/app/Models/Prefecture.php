@@ -7,17 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Prefecture extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $fillable = [
-        'code',
-        'name',
-        'region',
-    ];
-
-    // $prefecture->mountains
-    public function mountains()
-    {
-        return $this->hasMany(Mountain::class, 'prefecture_code', 'code');
-    }
+  protected $fillable = [
+    'name',
+    'region',
+  ];
 }

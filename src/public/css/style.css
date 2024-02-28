@@ -381,7 +381,6 @@ img {
   gap: 40px 2%;
 }
 .regions_wrap dl {
-  text-align: center;
   width: 23.5%;
 }
 .regions_wrap dl dt {
@@ -413,7 +412,6 @@ img {
   gap: 40px 2%;
 }
 .kana_columns_wrap dl {
-  text-align: center;
   width: 23.5%;
 }
 .kana_columns_wrap dl dt {
@@ -434,6 +432,11 @@ img {
   }
   .kana_columns_wrap dl {
     width: 31.3333333333%;
+  }
+}
+@media (max-width: 480px) {
+  .kana_columns_wrap dl {
+    width: 48.5%;
   }
 }
 
