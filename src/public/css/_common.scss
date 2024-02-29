@@ -5,69 +5,70 @@
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html {
-    font-size: 62.5%;
-    overflow-x: hidden;
+  font-size: 62.5%;
+  overflow-x: hidden;
 }
 
 body {
-    font-family: "Helvetica Neue", "Arial", YuGothic, "Yu Gothic", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", "メイリオ", Meiryo, sans-serif;
-    font-weight: 500;
-    color: $color_text;
-    @include fontsize(18);
-    @media(max-width: $bp) {
-      @include fontsize(14);
-    }
-    min-height: 0;
-    font-feature-settings: "palt";
-    letter-spacing: .05em;
-    &::before {
-        content: "";
-        display: block;
-        width: 100%;
-        height: 100vh;
-        background: $color_body_bg;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: -1;
-    }
+  font-family: "Noto Sans JP", "Helvetica Neue", "Arial", YuGothic, "Yu Gothic", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", "メイリオ", Meiryo, sans-serif;
+  font-weight: normal;
+  color: $color_text;
+  @include fontsize($font_base_size);
+  @media(max-width: $bp) {
+    @include fontsize($font_base_size - 2);
+  }
+  min-height: 0;
+  font-feature-settings: "palt";
+  letter-spacing: .05em;
+  &::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100vh;
+    background: $color_body_bg;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
 }
 
 main {
-    padding: calc(2% + 30px) 0;
+  padding: calc(2% + 30px) 0 calc(4% + 30px);
 }
 
 section {
-    &:not(:first-of-type) {
-        margin-top: calc(2% + 30px);
-    }
-}
-
-h1,
-h2 {
-    font-weight: 600;
-    line-height: 1.2;
+  &:not(:first-of-type) {
+    margin-top: calc(2% + 30px);
+  }
 }
 
 h1 {
-    text-align: center;
-    @include fontsize(36);
-    letter-spacing: .05em;
-    line-height: 1.4;
-    width: 800px;
-    max-width: calc(100% - 20px);
-    margin: 0 auto 1.2em;
-    @media(max-width: $bp) {
-        @include fontsize(22);
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: .08em;
+  line-height: 1.4;
+  width: 800px;
+  max-width: calc(100% - 20px);
+  margin: 0 auto 1.2em;
+  @include fontsize(36);
+  .text_small {
+    @include fontsize(30);
+  }
+  @media(max-width: $bp) {
+    @include fontsize(22);
+    .text_small {
+      @include fontsize(16);
     }
+  }
 }
 
 h2 {
-  font-weight: bold;
+  font-weight: 500;
   text-align: center;
   line-height: 1.4;
   margin-bottom: .8em;
@@ -79,68 +80,75 @@ h2 {
 
 p {
   line-height: 1.8;
-  margin: .5em auto;
-  span.text_small {
-      @include fontsize(14);
-      @media(max-width: $bp) {
-        @include fontsize(12);
-      }
+  margin: .5em auto 1em;
+  .text_small {
+    @include fontsize($font_base_size - 2);
+    @media(max-width: $bp) {
+      @include fontsize($font_base_size - 4);
     }
-    &.more {
-        margin: calc(2% + 30px) 0;
+  }
+  &.more {
+    margin: calc(2% + 30px) 0;
+  }
+  &.back {
+    margin-top: 60px;
+    @media(max-width: $bp) {
+      margin-top: 40px;
+      width: 500px;
+      max-width: 100%;
     }
-    &.back_link {
-      margin-bottom: 1.5em;
-      @media(max-width: $bp) {
-        width: 500px;
-        max-width: 100%;
-      }
-    }
-    &:last-child {
-        margin-bottom: 0;
-    }
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 dl,
 ul,
 ol {
-    line-height: 1.6;
+  line-height: 1.6;
+  margin: 0;
 }
 
 dl {
   dt {
-    font-weight: bold;
+    font-weight: 600;
+    margin-bottom: 1em;
+    @include fontsize($font_base_size + 2);
+    @media(max-width: $bp) {
+      @include fontsize($font_base_size);
+    }
   }
 }
 
 a {
-    color: $color_text;
-    text-decoration: none;
-    transition: .2s;
-    &:hover {
-        color: $color_text_hover;
-    }
+  color: $color_text;
+  text-decoration: none;
+  transition: .2s;
+  &:hover {
+    color: $color_text_hover;
+  }
 }
 
 input,
 button,
 textarea,
 select {
-    color: #333;
+  color: #333;
 }
 
 input[type="text"],
 input[type="mail"],
 input[type="password"] {
-    border: none;
-    border-radius: 3px;
-    box-shadow: rgb(0 0 0 / 4%) 0px 2px 15px;
-    padding: 0 5px;
-    width: 100%;
+  border: none;
+  border-radius: 3px;
+  box-shadow: rgb(0 0 0 / 4%) 0px 2px 15px;
+  padding: 0 5px;
+  width: 100%;
 }
 
 label {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 img {
@@ -148,42 +156,52 @@ img {
 }
 
 .button {
-    display: inline-block;
-    width: 140px;
-    border: none;
-    border-radius: 5px;
-    background: #007fff;
-    box-shadow: 0px 2px darken(#007fff, 10%);
-    padding: 10px;
-    margin-bottom: 2px;
-    cursor: pointer;
-    text-decoration: none;
+  font-weight: 400;
+  display: inline-block;
+  min-width: 200px;
+  @media(max-width: $bp) {
+    min-width: 170px;
+  }
+  border: none;
+  border-radius: 40px;
+  background: $color_button_bg;
+  box-shadow: 0px 1px $color_button_shadow;
+  padding: .6em 1em .6em 1.6em;
+  margin-bottom: 2px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+  text-align: center;
+  line-height: 1.4;
+  letter-spacing: .05em;
+  font-feature-settings: "palt";
+  transition: .2s;
+  position: relative;
+  &::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-top: 2px solid #fff;
+    border-left: 2px solid #fff;
+    position: absolute;
+    top: 50%;
+    left: 1em;
+    transform: translate(0, -50%) rotate(-45deg);
+  }
+  &:hover {
+    background: $color_button_bg_hover;
     color: #fff;
-    text-align: center;
-    @include fontsize(18);
-    line-height: 1.4;
-    letter-spacing: .07em;
-    font-feature-settings: "palt";
-    transition: .2s;
-
-    &:hover {
-        background: lighten(#007fff, 10%);
-        color: #fff;
-    }
-
-    &:active {
-        transform: translateY(2px);
-    }
+  }
 }
 
 .container {
-    width: 800px;
-    max-width: calc(100% - 20px);
-    margin: 0 auto;
-
-    &:not(:first-of-type) {
-        margin-top: calc(2% + 30px);
-    }
+  width: 800px;
+  max-width: calc(100% - 20px);
+  margin: 0 auto;
+  &:not(:first-of-type) {
+    margin-top: calc(2% + 30px);
+  }
 }
 
 .row {

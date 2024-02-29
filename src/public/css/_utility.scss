@@ -4,7 +4,7 @@
 ------------------------------------------ */
 @mixin fontsize($size, $base: 10) {
   font-size: $size + px;
-  font-size: ($size / $base) * 1rem;
+  font-size: calc($size / $base) * 1rem;
 }
 @mixin flex_center {
   display: flex;
@@ -20,12 +20,12 @@
 
 .sp_only {
   @media(min-width: ($bp + 1px)) {
-    display: none;
+    display: none !important;
   }
 }
 .pc_only {
   @media(max-width: $bp) {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -49,6 +49,13 @@
   &.gap {
     gap: 20px;
   }
+}
+
+.mt0 {
+  margin-top: 0 !important;
+}
+.mb0 {
+  margin-bottom: 0 !important;
 }
 
 .text_center {

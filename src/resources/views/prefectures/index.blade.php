@@ -2,6 +2,9 @@
   <x-slot name="title">
     山の天気予報
   </x-slot>
+  <x-slot name="bodyClass">
+    home
+  </x-slot>
 
   <h1>山の天気予報</h1>
   <div class="container">

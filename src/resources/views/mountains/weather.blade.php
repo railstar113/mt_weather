@@ -2,18 +2,19 @@
   <x-slot name="title">
     {{ $mountain['name'] }} - 天気予報
   </x-slot>
+  <x-slot name="bodyClass">
+    weathers
+  </x-slot>
 
-  <h1>{{ $mountain['name'] }} - {{ $mountain['area'] }}の<span class="i_block">天気予報</span></h1>
+  <h1>{{ $mountain['name'] }}<span class="text_small">{{ '（' . $mountain['elevation'] . 'm付近）' }}</span></h1>
   <div class="container">
-    <p class="back_link">&laquo; <a
-        href="{{ route('prefectures.show', $prefecture->id) }}">{{ $prefecture->name }}の山一覧</a></a></p>
 
     {{-- 現在の天気 --}}
     <div class="row text_center">
       <table class="table_weather now">
         <thead>
           <tr>
-            <th>{{ date('Y/m/d', $weatherNow['dt']) . '(' . $weatherNow['dt_day'] . ') ' . date('H:i') }}<br>現在の天気
+            <th>{{ date('Y/m/d', $weatherNow['dt']) . '（' . $weatherNow['dt_day'] . '） ' . date('H:i') }}<br>現在の天気
             </th>
           </tr>
         </thead>
@@ -32,7 +33,7 @@
               @if (isset($weatherNow['rain']))
                 {{ $weatherNow['rain']['3h'] }}<span class="text_small">mm</span>
               @elseif (isset($weatherNow['snow']))
-                {{ $weatherNow['snow']['3h'] }}<span class="text_small">cm<br>（降雪量）</span>
+                {{ $weatherNow['snow']['3h'] }}<span class="text_small">cm （積雪量）</span>
               @else
                 0.0<span class="text_small">mm</span>
               @endif
@@ -53,7 +54,9 @@
         <table class="table_weather">
           <thead>
             <tr>
-              <th colspan="9">{{ $i === 0 ? '今日 ' : '' }}{{ $i === 1 ? '明日 ' : '' }}{{ date('m/d', $weather3hs[$i]['dt']) . '(' . $weather3hs[$i]['dt_day'] . ')' }}</th>
+              <th colspan="9">
+                {{ $i === 0 ? '今日 ' : '' }}{{ $i === 1 ? '明日 ' : '' }}{{ date('m/d', $weather3hs[0]['dt']) . '（' . $weather3hs[0]['dt_day'] . '）' }}
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -97,7 +100,7 @@
                   @if (isset($weather3h['rain']))
                     {{ $weather3h['rain']['3h'] }}<span class="text_small">mm</span>
                   @elseif (isset($weather3h['snow']))
-                    {{ $weather3h['snow']['3h'] }}<span class="text_small">cm<br>（降雪量）</span>
+                    {{ $weather3h['snow']['3h'] }}<span class="text_small">cm<br>（積雪量）</span>
                   @else
                     0.0<span class="text_small">mm</span>
                   @endif
@@ -124,7 +127,9 @@
         <table class="table_weather">
           <thead>
             <tr>
-              <th colspan="6">{{ $i === 0 ? '今日 ' : '' }}{{ $i === 1 ? '明日 ' : '' }}{{ date('m/d', $weather3hs[$i]['dt']) . '(' . $weather3hs[$i]['dt_day'] . ')' }}</th>
+              <th colspan="6">
+                {{ $i === 0 ? '今日 ' : '' }}{{ $i === 1 ? '明日 ' : '' }}{{ date('m/d', $weather3hs[0]['dt']) . '（' . $weather3hs[0]['dt_day'] . '）' }}
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -138,26 +143,28 @@
             </tr>
             @foreach ($weather3hs as $weather3h)
               <tr>
-                  <td>{{ date('H:i', $weather3h['dt']) }}</td>
-                  <td><img src="http://openweathermap.org/img/wn/{{ $weather3h['weather'][0]['icon'] }}@2x.png" alt="{{ $weather3h['weather'][0]['description'] }}"></td>
-                  <td>{{ $weather3h['weather'][0]['description'] }}</td>
-                  <td>{{ round($weather3h['main']['temp']) }}℃</td>
-                  <td>
-                    @if (isset($weather3h['rain']))
-                      {{ $weather3h['rain']['3h'] }}<span class="text_small">mm</span>
-                    @elseif (isset($weather3h['snow']))
-                      {{ $weather3h['snow']['3h'] }}<span class="text_small">cm<br>（降雪量）</span>
-                    @else
-                      0.0<span class="text_small">mm</span>
-                    @endif
-                  </td>
-                  <td><span class="text_small">{{ $weather3h['wind']['direction'] }}</span><br>{{ round($weather3h['wind']['speed'], 1) }}<span class="text_small">m/s</span></td>
-                </tr>
-              @endforeach
+                <td>{{ date('H:i', $weather3h['dt']) }}</td>
+                <td><img src="http://openweathermap.org/img/wn/{{ $weather3h['weather'][0]['icon'] }}@2x.png" alt="{{ $weather3h['weather'][0]['description'] }}"></td>
+                <td>{{ $weather3h['weather'][0]['description'] }}</td>
+                <td>{{ round($weather3h['main']['temp']) }}℃</td>
+                <td>
+                  @if (isset($weather3h['rain']))
+                    {{ $weather3h['rain']['3h'] }}<span class="text_small">mm</span>
+                  @elseif (isset($weather3h['snow']))
+                    {{ $weather3h['snow']['3h'] }}<span class="text_small">cm<br>（積雪量）</span>
+                  @else
+                    0.0<span class="text_small">mm</span>
+                  @endif
+                </td>
+                <td><span class="text_small">{{ $weather3h['wind']['direction'] }}</span><br>{{ round($weather3h['wind']['speed'], 1) }}<span class="text_small">m/s</span></td>
+              </tr>
+            @endforeach
           </tbody>
         </table>
       </div>
     @endforeach
-    
+
+    <p class="back"><a href="{{ route('prefectures.show', $prefecture->id) }}" class="button">{{ $prefecture->name }}の山一覧</a></a></p>
+    <p class="back mt0"><a href="{{ route('prefectures.index') }}" class="button">都道府県一覧</a></a></p>
   </div>
 </x-layout>
