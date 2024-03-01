@@ -5,6 +5,6 @@ sed -ri -e "182a\DocumentRoot ${APACHE_DOCUMENT_ROOT}" /etc/apache2/apache2.conf
 rm /etc/apache2/mods-enabled/mpm_event.conf
 rm /etc/apache2/mods-enabled/mpm_event.load
 cd $WORKDIR
-composer install --no-interaction --no-scripts
-chmod -R 755 vendor/
+composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
+composer update
 apache2-foreground "$@"
