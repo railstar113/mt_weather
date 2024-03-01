@@ -24,4 +24,6 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 
 EXPOSE 80
 
-CMD ["apache2-foreground"]
+# HerokuのApache2エラー対応
+COPY ./docker/app/run-apache2.sh /usr/local/bin/
+CMD [ "run-apache2.sh" ]
