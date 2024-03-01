@@ -6,4 +6,5 @@ rm /etc/apache2/mods-enabled/mpm_event.conf
 rm /etc/apache2/mods-enabled/mpm_event.load
 cd $WORKDIR
 composer install --no-interaction --no-scripts
+chmod -R 755 vendor/
 apache2-foreground "$@"
