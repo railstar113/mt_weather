@@ -22,8 +22,6 @@ RUN a2enmod rewrite
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-EXPOSE 80
-
 # HerokuのApache2エラー対応
 COPY ./docker/app/run-apache2.sh /usr/local/bin/
 RUN chmod 744 /usr/local/bin/run-apache2.sh
