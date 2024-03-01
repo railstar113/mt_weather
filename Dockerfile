@@ -1,9 +1,10 @@
 FROM php:8.1-apache
 
+ENV WORKDIR /var/www/html
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 ENV WWWGROUP 1000
 
-WORKDIR /var/www/html
+WORKDIR $WORKDIR
 
 COPY ./docker/app/php.ini /usr/local/etc/php/conf.d/php.ini
 COPY ./src .
