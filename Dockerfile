@@ -26,4 +26,5 @@ EXPOSE 80
 
 # HerokuのApache2エラー対応
 COPY ./docker/app/run-apache2.sh /usr/local/bin/
+RUN chmod 744 /usr/local/bin/run-apache2.sh
 CMD [ "run-apache2.sh" ]
