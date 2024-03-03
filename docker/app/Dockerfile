@@ -15,13 +15,11 @@ RUN apt-get update && apt-get install -y \
     git zip unzip libpng-dev libpq-dev cron vim less \
     && docker-php-ext-install pdo_mysql
 
-COPY --from=composer:2.4 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.2.23 /usr/bin/composer /usr/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
 RUN a2enmod rewrite
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
-RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
-
-EXPOSE 80
+RUN sed -ri -e "s!/var/www/html!${APACHE_DOCUMENT_ROOT}!g" /etc/apache2/sites-available/*.conf
+RUN sed -ri -e "s!/var/www/!${APACHE_DOCUMENT_ROOT}!g" /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
 CMD ["apache2-foreground"]
