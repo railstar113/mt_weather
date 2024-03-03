@@ -25,11 +25,12 @@ body {
   letter-spacing: .05em;
   min-height: 100vh;
   min-height: 100lvh;
+  overflow-y: visible;
   &::before {
     content: "";
     display: block;
     width: 100%;
-    height: 100%;
+    height: calc(100% + 60px);
     background: $color_body_bg;
     position: fixed;
     top: 0;
