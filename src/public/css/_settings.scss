@@ -10,7 +10,8 @@ $color_primary_light: lighten($color_primary, 8%);
 $color_primary_dark: darken($color_primary, 8%);
 $color_secondary: #9e7a7a;
 
-$color_body_bg: linear-gradient(160deg, #edf1c2, #e1efc4, #d6edc6, #cdeac9, $color_primary);
+// $color_body_bg: linear-gradient(160deg, #edf1c2, #e1efc4, #d6edc6, #cdeac9, $color_primary);
+$color_body_bg: #d6edc6;
 
 $color_text: #444;
 $color_text_hover: #777;
