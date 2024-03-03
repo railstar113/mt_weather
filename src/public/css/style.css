@@ -200,7 +200,7 @@ body {
   letter-spacing: 0.05em;
   min-height: 100vh;
   min-height: 100lvh;
-  overflow-y: visible;
+  background: #d6edc6;
 }
 @media (max-width: 767px) {
   body {
@@ -212,7 +212,7 @@ body::before {
   content: "";
   display: block;
   width: 100%;
-  height: calc(100% + 60px);
+  height: 100%;
   background: linear-gradient(160deg, #edf1c2, #e1efc4, #d6edc6, #cdeac9, #a7dbb3);
   position: fixed;
   top: 0;
