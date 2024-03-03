@@ -164,8 +164,8 @@ body.home {
   border-radius: 6px;
   overflow: hidden;
   @media(max-width: $bp) {
-    width: 500px;
-    max-width: 100%;
+    width: 100%;
+    max-width: 500px;
     margin: 0 auto;
   }
   th, td {
