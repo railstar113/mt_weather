@@ -196,9 +196,10 @@ body {
   color: #444;
   font-size: 16px;
   font-size: 1.6rem;
-  min-height: 0;
   font-feature-settings: "palt";
   letter-spacing: 0.05em;
+  min-height: 100vh;
+  min-height: 100lvh;
 }
 @media (max-width: 767px) {
   body {
@@ -210,8 +211,7 @@ body::before {
   content: "";
   display: block;
   width: 100%;
-  height: 100vh;
-  height: 100lvh;
+  height: 100%;
   background: linear-gradient(160deg, #edf1c2, #e1efc4, #d6edc6, #cdeac9, #a7dbb3);
   position: fixed;
   top: 0;
@@ -568,7 +568,6 @@ img {
 }
 @media (max-width: 767px) {
   .table_weather {
-    width: 100%;
     max-width: 500px;
     margin: 0 auto;
   }
