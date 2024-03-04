@@ -41,7 +41,7 @@ body.home {
         height: .9em;
         background: url('../img/pref_list_icon.png') no-repeat center / contain;
         position: absolute;
-        top: .3em;
+        top: .4em;
         left: 0;
         transition: .2s;
       }
@@ -111,7 +111,7 @@ body.home {
         height: .9em;
         background: url('../img/mt_list_icon.png') no-repeat center / contain;
         position: absolute;
-        top: .3em;
+        top: .4em;
         left: 0;
         transition: .2s;
       }
@@ -218,10 +218,14 @@ body.home {
     tbody {
       th, td {
         padding: 0 5px 5px;
-        @media(min-width: ($bp + 1px)) {
-          @include fontsize($font_base_size);
+        @include fontsize($font_base_size);
+        .text_small {
+          @include fontsize($font_base_size - 2);
+        }
+        @media(max-width: $bp) {
+          @include fontsize($font_base_size - 2);
           .text_small {
-            @include fontsize($font_base_size - 2);
+            @include fontsize($font_base_size - 4);
           }
         }
       }

@@ -1,6 +1,9 @@
 <x-layout>
   <x-slot name="title">
-    {{ $prefecture->name }} - 山一覧
+    {{ $prefecture->name }}の山一覧 - {{ config('app.name') }}
+  </x-slot>
+  <x-slot name="description">
+    {{ config('app.name') }}では、都道府県の山一覧から知りたい山の気象情報を確認することができます。
   </x-slot>
   <x-slot name="bodyClass">
     mountains
@@ -24,6 +27,6 @@
         </dl>
       @endforeach
     </div>
-    <p class="back"><a href="{{ route('prefectures.index') }}" class="button">都道府県一覧</a></a></p>
+    <p class="back sp_text_center"><a href="{{ route('prefectures.index') }}" class="button">都道府県一覧</a></a></p>
   </div>
 </x-layout>

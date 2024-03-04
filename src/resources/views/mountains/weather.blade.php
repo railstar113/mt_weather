@@ -1,12 +1,15 @@
 <x-layout>
   <x-slot name="title">
-    {{ $mountain['name'] }} - 天気予報
+    {{ $mountain['name'] }} - {{ config('app.name') }}
+  </x-slot>
+  <x-slot name="description">
+    {{ config('app.name') }}では、知りたい山に関する天気予報と気象情報をご提供します。詳細な気象情報は安全な登山にかかせないものです。
   </x-slot>
   <x-slot name="bodyClass">
     weathers
   </x-slot>
 
-  <h1>{{ $mountain['name'] }}<span class="text_small">{{ '（' . $mountain['elevation'] . 'm付近）' }}</span></h1>
+  <h1>{{ $mountain['name'] }}<span class="i_block text_small">{{ '（' . $mountain['elevation'] . 'm付近）' }}</span></h1>
   <div class="container">
 
     {{-- 現在の天気 --}}
@@ -164,7 +167,7 @@
       </div>
     @endforeach
 
-    <p class="back"><a href="{{ route('prefectures.show', $prefecture->id) }}" class="button">{{ $prefecture->name }}の山一覧</a></a></p>
-    <p class="back mt0"><a href="{{ route('prefectures.index') }}" class="button">都道府県一覧</a></a></p>
+    <p class="back sp_text_center"><a href="{{ route('prefectures.show', $prefecture->id) }}" class="button">{{ $prefecture->name }}の山一覧</a></a></p>
+    <p class="back mt0 sp_text_center"><a href="{{ route('prefectures.index') }}" class="button">都道府県一覧</a></a></p>
   </div>
 </x-layout>

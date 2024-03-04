@@ -61,6 +61,11 @@
 .text_center {
   text-align: center;
 }
+@media(max-width: $bp) {
+  .sp_text_center {
+    text-align: center;
+  }
+}
 .text_left {
   text-align: right;
 }

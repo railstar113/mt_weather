@@ -1,12 +1,15 @@
 <x-layout>
   <x-slot name="title">
-    山の天気予報
+    {{ config('app.name') }}
+  </x-slot>
+  <x-slot name="description">
+    {{ config('app.name') }}は、日本各地の山の天気予報をご提供します。登山に必要な情報に簡単にアクセスすることが可能です。
   </x-slot>
   <x-slot name="bodyClass">
     home
   </x-slot>
 
-  <h1>山の天気予報</h1>
+  <h1>{{ config('app.name') }}</h1>
   <div class="container">
     <div class="regions_wrap">
       @foreach ($regions as $region => $prefectures)
