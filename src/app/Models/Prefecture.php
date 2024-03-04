@@ -13,4 +13,10 @@ class Prefecture extends Model
     'name',
     'region',
   ];
+
+  // $prefecture->mountains
+  public function mountains()
+  {
+    return $this->hasMany(Mountain::class);
+  }
 }

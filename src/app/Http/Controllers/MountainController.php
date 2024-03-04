@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Prefecture;
+use App\Models\Mountain;
 use Illuminate\Support\Facades\Http;
 
 class MountainController extends Controller
@@ -12,9 +13,22 @@ class MountainController extends Controller
   {
     $prefecture = Prefecture::findOrFail($prefectureId);
 
-    // mountix APIで緯度・経度取得
-    $response = Http::get("https://mountix.codemountains.org/api/v1/mountains/$mountainId");
-    $mountain = $response->json();
+    $mountain = [];
+    // 山のid（APIは～9999、DBは10000～）
+    if ($mountainId < 10000) {
+      // mountix APIから取得
+      $response = Http::get("https://mountix.codemountains.org/api/v1/mountains/$mountainId");
+      $mountain = $response->json();
+    } else {
+      // mountainsテーブルから取得
+      $mountain = Mountain::findOrFail($mountainId);
+      $mountain['location'] = [
+        'latitude' => $mountain['latitude'],
+        'longitude' => $mountain['longitude'],
+      ];
+      unset($mountain['latitude'], $mountain['longitude']);
+    }
+    // 緯度・経度取得
     $lat = $mountain['location']['latitude'];
     $lon = $mountain['location']['longitude'];
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Prefecture;
+use App\Models\Mountain;
 use Illuminate\Support\Facades\Http;
 
 class PrefectureController extends Controller
@@ -21,9 +22,26 @@ class PrefectureController extends Controller
 
   public function show(Prefecture $prefecture)
   {
+    // mountix APIから山データ取得
     $response = Http::get("https://mountix.codemountains.org/api/v1/mountains?prefecture=$prefecture->id&sort=name.asc");
-    $mountains = $response->json()['mountains'];
-
+    $mountainsApi = $response->json()['mountains'];
+    // mountainsテーブルから山データ取得
+    $mountainsTable = Mountain::where('prefecture_id', $prefecture->id)->get()->toArray();
+    $mountainsTableReshaped = [];
+    foreach ($mountainsTable as $mountain) {
+      $mountain['location'] = [
+        'latitude' => $mountain['latitude'],
+        'longitude' => $mountain['longitude'],
+      ];
+      unset($mountain['latitude'], $mountain['longitude']);
+      $mountainsTableReshaped[] = $mountain;
+    }
+    // APIとDBの山データ結合
+    $mountains = array_merge($mountainsApi, $mountainsTableReshaped);
+    // 山の名前でソート
+    $mountainsKana = array_column($mountains, 'nameKana');
+    array_multisort($mountainsKana, SORT_ASC, $mountains);
+    // あ～わ行毎に格納
     $regexList = [
       'あ' => '/^[ぁ-おァ-オヴｧ-ｫｱ-ｵ]/u',
       'か' => '/^[か-ごカ-ゴヵヶｶ-ｺ]/u',
