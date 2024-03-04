@@ -36,5 +36,26 @@ class DatabaseSeeder extends Seeder
         'updated_at' => new DateTime(),
       ]);
     }
+
+    $mountainsCsvPath = database_path('csv/mountains_data.csv');
+    $mountainRows = file($mountainsCsvPath);
+    $skipRow1 = true;
+    foreach ($mountainRows as $row) {
+      if ($skipRow1) {
+        $skipRow1 = false;
+        continue;
+      }
+      $data = str_getcsv($row);
+      DB::table('mountains')->insert([
+        'name' => $data[0],
+        'nameKana' => $data[1],
+        'prefecture_id' => $data[2],
+        'address' => $data[3],
+        'latitude' => $data[4],
+        'longitude' => $data[5],
+        'created_at' => new DateTime(),
+        'updated_at' => new DateTime(),
+      ]);
+    }
   }
 }

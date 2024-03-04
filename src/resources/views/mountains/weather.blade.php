@@ -9,7 +9,7 @@
     weathers
   </x-slot>
 
-  <h1>{{ $mountain['name'] }}<span class="i_block text_small">{{ '（' . $mountain['elevation'] . 'm付近）' }}</span></h1>
+  <h1>{{ $mountain['name'] }}{!! isset($mountain['elevation']) ? "<span class=\"i_block text_small\">（" . $mountain['elevation'] ."m付近）</span>" : "" !!}</h1>
   <div class="container">
 
     {{-- 現在の天気 --}}
